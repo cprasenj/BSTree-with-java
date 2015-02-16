@@ -7,37 +7,45 @@ public class tree{
 	public tree(treeNode node) {
 		this.root = node;
 	}
-
-	public int insert(int val) {
-		treeNode node = null;
-		if(root == null){
+	private void rootInsert(treeNode node,int val) {
+		if(root == null) {
 			node = new treeNode(val); 
 			this.root = node;
-			return 1; 
 		}
+	}
+	private void ifRightChildNull(treeNode node,int val) {
+		if(root.data < val && root.rightChild == null){
+			node = new treeNode(val);
+			root.rightChild = node;
+		}
+	}
+	private void ifleftChildNull(treeNode node,int val) {
+		if(root.data > val && root.leftChild == null){
+			node = new treeNode(val);
+			root.leftChild = node;
+		}
+	}
+	private void ifleftChildNotNull(treeNode node,int val) {
+		if(root.data > val && root.leftChild != null){
+			tree subTree = new tree(this.root.leftChild);
+			subTree.insert(val);
+		}
+	}
+	private void ifrightChildNotNull(treeNode node,int val) {
+		if(root.data < val && root.rightChild != null){
+			tree subTree = new tree(this.root.rightChild);
+			subTree.insert(val);
+		}
+	}
+	public void insert(int val) {
+		treeNode node = null;
+		rootInsert(node,val);
 		if(root!=null){
-			if(root.data < val && root.rightChild == null){
-				node = new treeNode(val);
-				root.rightChild = node;
-				return 1; 
-			}
-			if(root.data > val && root.leftChild == null){
-				node = new treeNode(val);
-				root.leftChild = node;
-				return 1; 
-			}
-			if(root.data > val && root.leftChild != null){
-				tree subTree = new tree(this.root.leftChild);
-				subTree.insert(val);
-				return 1;
-			}
-			if(root.data < val && root.rightChild != null) {
-				tree subTree = new tree(this.root.rightChild);
-				subTree.insert(val);
-				return 1;
-			}
+			ifRightChildNull(node,val);
+			ifleftChildNull(node,val);
+			ifleftChildNotNull(node,val);
+			ifrightChildNotNull(node,val);
 		}
-		return 1;
 	}
 }	
 
