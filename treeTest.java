@@ -62,4 +62,60 @@ public class treeTest {
 		assertEquals(tree.root.leftChild.leftChild.data,1);
 	}
 
+	@Test
+	public void delete_001(){
+		console.log("delete deletes the leaf noad");
+		tree tree = new tree();
+		tree.insert(5);
+		treeNode delnode = tree.delete(5);
+		assertEquals(tree.root,null);
+		assertEquals(delnode.data,5);
+	}
+
+	@Test
+	public void delete_002(){
+		console.log("delete gives null for blank tree");
+		tree tree = new tree();
+		treeNode delnode = tree.delete(5);
+		assertEquals(tree.root,null);
+		assertEquals(delnode,null);
+	}
+
+	@Test
+	public void delete_003(){
+		console.log("delete gives null for blank tree");
+		tree tree = new tree();
+		tree.insert(5);
+		tree.insert(50);
+		treeNode delnode = tree.delete(15);
+		assertEquals(tree.root.data,5);
+		assertEquals(delnode,null);
+	}
+
+	@Test
+	public void delete_004(){
+		console.log("delete deletes for tree with rightChild");
+		tree tree = new tree();
+		tree.insert(5);
+		tree.insert(50);
+		treeNode delnode = tree.delete(50);
+		assertEquals(tree.root.data,5);
+		assertEquals(delnode.data,50);
+		assertEquals(tree.root.rightChild,null);
+	}
+
+	@Test
+	public void delete_005(){
+		console.log("delete deletes for tree with rightChild of depth 3");
+		tree tree = new tree();
+		tree.insert(5);
+		tree.insert(50);
+		tree.insert(100);
+		treeNode delnode = tree.delete(100);
+		assertEquals(tree.root.data,5);
+		assertEquals(tree.root.rightChild.data,50);
+		assertEquals(delnode.data,100);
+		assertEquals(tree.root.rightChild.rightChild,null);
+	}
+
 }
