@@ -50,13 +50,17 @@ public class tree{
 			ifrightChildNotNull(node,val);
 		}
 	}
-	public treeNode delete(int val) {
-		treeNode node = null;
-		if(root == null)return node;
+	private treeNode rootDel(treeNode node,int val) {
 		if(isLeafNode(root) && root.data == val){
 			node = root;
 			root = null;
 		}
+		return node;
+	}
+	public treeNode delete(int val) {
+		treeNode node = null;
+		if(root == null)return node;
+		node = rootDel(node,val);
 		if(root!=null && root.data < val) {
 			if(root.rightChild !=null){
 				if(root.rightChild.data == val && isLeafNode(root.rightChild)) {

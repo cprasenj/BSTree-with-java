@@ -143,5 +143,4 @@ public class treeTest {
 		assertEquals(tree.root.leftChild.leftChild,null);
 		assertEquals(delnode.data,1);
 	}
-
 }
