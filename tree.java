@@ -57,34 +57,42 @@ public class tree{
 		}
 		return node;
 	}
+
+	private treeNode rightChildDel(treeNode node,int val) {
+		if(root.rightChild !=null){
+			if(root.rightChild.data == val && isLeafNode(root.rightChild)) {
+				node = root.rightChild;
+				root.rightChild = null;
+			}
+		else{
+				tree subTree = new tree(root.rightChild);
+				node =  subTree.delete(val);
+			}
+		}
+		return node;
+	}
+	private treeNode leftChildDel(treeNode node,int val) {
+		if(root.leftChild!=null) {
+			if(root.leftChild.data == val && isLeafNode(root.leftChild)) {
+				node = root.leftChild;
+				root.leftChild = null;
+			}
+			else{
+				tree subTree = new tree(root.leftChild);
+				node = subTree.delete(val);
+			}
+		}
+		return node;
+	}
+
 	public treeNode delete(int val) {
 		treeNode node = null;
 		if(root == null)return node;
 		node = rootDel(node,val);
-		if(root!=null && root.data < val) {
-			if(root.rightChild !=null){
-				if(root.rightChild.data == val && isLeafNode(root.rightChild)) {
-					node = root.rightChild;
-					root.rightChild = null;
-				}
-			else{
-					tree subTree = new tree(root.rightChild);
-					node =  subTree.delete(val);
-				}
-			}
-		} 
-		if(root!=null && root.data > val) {
-			if(root.leftChild!=null) {
-				if(root.leftChild.data == val && isLeafNode(root.leftChild)) {
-					node = root.leftChild;
-					root.leftChild = null;
-				}
-				else{
-					tree subTree = new tree(root.leftChild);
-					node = subTree.delete(val);
-				}
-			}
-		}
+		if(root!=null && root.data < val) 
+			node = rightChildDel(node,val);
+		if(root!=null && root.data > val) 
+			node = leftChildDel(node,val);
 		return node;
 	}
 }	
