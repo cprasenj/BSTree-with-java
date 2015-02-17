@@ -67,8 +67,20 @@ public class tree{
 					tree subTree = new tree(root.rightChild);
 					node =  subTree.delete(val);
 				}
-			} 
+			}
 		} 
+		if(root!=null && root.data > val) {
+			if(root.leftChild!=null) {
+				if(root.leftChild.data == val && isLeafNode(root.leftChild)) {
+					node = root.leftChild;
+					root.leftChild = null;
+				}
+				else{
+					tree subTree = new tree(root.leftChild);
+					node = subTree.delete(val);
+				}
+			}
+		}
 		return node;
 	}
 }	

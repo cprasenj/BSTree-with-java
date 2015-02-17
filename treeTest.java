@@ -118,4 +118,30 @@ public class treeTest {
 		assertEquals(tree.root.rightChild.rightChild,null);
 	}
 
+	@Test
+	public void delete_006(){
+		console.log("delete deletes for tree with lefttChild of depth 2");
+		tree tree = new tree();
+		tree.insert(5);
+		tree.insert(2);
+		treeNode delnode = tree.delete(2);
+		assertEquals(tree.root.data,5);
+		assertEquals(tree.root.leftChild,null);
+		assertEquals(delnode.data,2);
+	}
+
+	@Test
+	public void delete_007(){
+		console.log("delete deletes for tree with lefttChild of depth 3");
+		tree tree = new tree();
+		tree.insert(5);
+		tree.insert(2);
+		tree.insert(1);
+		treeNode delnode = tree.delete(1);
+		assertEquals(tree.root.data,5);
+		assertEquals(tree.root.leftChild.data,2);
+		assertEquals(tree.root.leftChild.leftChild,null);
+		assertEquals(delnode.data,1);
+	}
+
 }
