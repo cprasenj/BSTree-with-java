@@ -143,4 +143,26 @@ public class treeTest {
 		assertEquals(tree.root.leftChild.leftChild,null);
 		assertEquals(delnode.data,1);
 	}
+
+	@Test
+	public void travarse_007(){
+		console.log("travarses through the tree and produces result");
+		tree tree = new tree();
+		tree.insert(3);
+		tree.insert(1);
+		tree.insert(0);
+		tree.insert(2);
+		tree.insert(5);
+		tree.insert(4);
+		tree.insert(6);
+		CreateArray c = new CreateArray();
+		tree.travarse(c);
+		assertEquals(c.result[0],0);
+		assertEquals(c.result[1],1);
+		assertEquals(c.result[2],2);
+		assertEquals(c.result[3],3);
+		assertEquals(c.result[4],4);
+		assertEquals(c.result[5],5);
+		assertEquals(c.result[6],6);
+	}
 }

@@ -95,6 +95,20 @@ public class tree{
 			node = leftChildDel(node,val);
 		return node;
 	}
+
+	public void travarse(Traversal a) {
+		if(root!=null) {
+			if(root.leftChild != null) {
+				tree subTree = new tree(root.leftChild);
+				subTree.travarse(a);
+			}
+			a.travarseWork(root.data);
+			if(root.rightChild != null) {
+				tree subTree = new tree(root.rightChild);
+				subTree.travarse(a);
+			}
+		}
+	}
 }	
 
 
