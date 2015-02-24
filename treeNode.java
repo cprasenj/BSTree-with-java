@@ -1,12 +1,12 @@
-public class treeNode{
-	public treeNode leftChild = null;
-	public treeNode rightChild = null;
+public class TreeNode{
+	public TreeNode leftChild = null;
+	public TreeNode rightChild = null;
 	public int data = 0;
 
-	public treeNode() {
+	public TreeNode() {
 	}
 
-	public treeNode(int val) {
+	public TreeNode(int val) {
 		this.data = val;
 	}
 	

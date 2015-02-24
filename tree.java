@@ -1,47 +1,47 @@
-public class tree{
-	public treeNode root = null;
+public class Tree{
+	public TreeNode root = null;
 	public int countOfNode = 0;
 
-	public tree() {
+	public Tree() {
 	}
-	public tree(treeNode node) {
+	public Tree(TreeNode node) {
 		this.root = node;
 	}
-	private void rootInsert(treeNode node,int val) {
+	private void rootInsert(TreeNode node,int val) {
 		if(root == null) {
-			node = new treeNode(val); 
+			node = new TreeNode(val); 
 			this.root = node;
 		}
 	}
-	private void ifRightChildNull(treeNode node,int val) {
+	private void ifRightChildNull(TreeNode node,int val) {
 		if(root.data < val && root.rightChild == null){
-			node = new treeNode(val);
+			node = new TreeNode(val);
 			root.rightChild = node;
 		}
 	}
-	private void ifleftChildNull(treeNode node,int val) {
+	private void ifleftChildNull(TreeNode node,int val) {
 		if(root.data > val && root.leftChild == null){
-			node = new treeNode(val);
+			node = new TreeNode(val);
 			root.leftChild = node;
 		}
 	}
-	private void ifleftChildNotNull(treeNode node,int val) {
+	private void ifleftChildNotNull(TreeNode node,int val) {
 		if(root.data > val && root.leftChild != null){
-			tree subTree = new tree(this.root.leftChild);
+			Tree subTree = new Tree(this.root.leftChild);
 			subTree.insert(val);
 		}
 	}
-	private void ifrightChildNotNull(treeNode node,int val) {
+	private void ifrightChildNotNull(TreeNode node,int val) {
 		if(root.data < val && root.rightChild != null){
-			tree subTree = new tree(this.root.rightChild);
+			Tree subTree = new Tree(this.root.rightChild);
 			subTree.insert(val);
 		}
 	}
-	private boolean isLeafNode(treeNode noad) {
+	private boolean isLeafNode(TreeNode noad) {
 		return (noad.rightChild == null && noad.leftChild == null) ? true : false;
 	}
 	public void insert(int val) {
-		treeNode node = null;
+		TreeNode node = null;
 		rootInsert(node,val);
 		if(root!=null){
 			ifRightChildNull(node,val);
@@ -50,7 +50,7 @@ public class tree{
 			ifrightChildNotNull(node,val);
 		}
 	}
-	private treeNode rootDel(treeNode node,int val) {
+	private TreeNode rootDel(TreeNode node,int val) {
 		if(isLeafNode(root) && root.data == val){
 			node = root;
 			root = null;
@@ -58,35 +58,35 @@ public class tree{
 		return node;
 	}
 
-	private treeNode rightChildDel(treeNode node,int val) {
+	private TreeNode rightChildDel(TreeNode node,int val) {
 		if(root.rightChild !=null){
 			if(root.rightChild.data == val && isLeafNode(root.rightChild)) {
 				node = root.rightChild;
 				root.rightChild = null;
 			}
 		else{
-				tree subTree = new tree(root.rightChild);
+				Tree subTree = new Tree(root.rightChild);
 				node =  subTree.delete(val);
 			}
 		}
 		return node;
 	}
-	private treeNode leftChildDel(treeNode node,int val) {
+	private TreeNode leftChildDel(TreeNode node,int val) {
 		if(root.leftChild!=null) {
 			if(root.leftChild.data == val && isLeafNode(root.leftChild)) {
 				node = root.leftChild;
 				root.leftChild = null;
 			}
 			else{
-				tree subTree = new tree(root.leftChild);
+				Tree subTree = new Tree(root.leftChild);
 				node = subTree.delete(val);
 			}
 		}
 		return node;
 	}
 
-	public treeNode delete(int val) {
-		treeNode node = null;
+	public TreeNode delete(int val) {
+		TreeNode node = null;
 		if(root == null)return node;
 		node = rootDel(node,val);
 		if(root!=null && root.data < val) 
@@ -99,12 +99,12 @@ public class tree{
 	public void travarse(Traversal a) {
 		if(root!=null) {
 			if(root.leftChild != null) {
-				tree subTree = new tree(root.leftChild);
+				Tree subTree = new Tree(root.leftChild);
 				subTree.travarse(a);
 			}
 			a.travarseWork(root.data);
 			if(root.rightChild != null) {
-				tree subTree = new tree(root.rightChild);
+				Tree subTree = new Tree(root.rightChild);
 				subTree.travarse(a);
 			}
 		}
