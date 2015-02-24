@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class treeNodeTest {
+public class TreeNodeTest {
 	
 	@Test
 	public void initially_treeNode_has_value_0_and_all_points_to_null_if_no_argument_passed() {
