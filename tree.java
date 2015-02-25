@@ -7,6 +7,9 @@ public class Tree{
 	public Tree(TreeNode node) {
 		this.root = node;
 	}
+	// private boolean tORf(Tree a) {
+		// return Tree != null ? true : false;
+	// }
 	private void rootInsert(TreeNode node,int val) {
 		if(root == null) {
 			node = new TreeNode(val); 
